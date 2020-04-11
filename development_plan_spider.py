@@ -25,21 +25,21 @@ def get_content(url,headers,cookies,n):
     content = tree.xpath('.//div[@class="panel-lead"]/div//text()')
     write_txt(str(n)+'.'+''.join(name_list),''.join(content).encode('utf-8'))
 
-
-
-def main():
+def get_more_pages(start,end):
     # 设置请求头
     headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:64.0) Gecko/20100101 Firefox/64.0',
-        'Referer':'http://www.myh0st.cn/user/task/index/taskid/1.html?ref=addtabs'
+        'Referer': 'http://www.myh0st.cn/user/task/index/taskid/1.html?ref=addtabs'
     }
     cookies = {'PHPSESSID': 'XXX', 'HTTP_TOKEN': 'XXX'}
     # 设置url
-    # 从1开始循环
-    n = 53
-    for i in range(1,n):
-        url = "http://www.myh0st.cn/user/task/index/taskid/"+str(i)+".html?ref=addtabs"
-        get_content(url,headers,cookies,i)
+    # 从start循环，end-1结束
+    for i in range(start, end):
+        url = "http://www.myh0st.cn/user/task/index/taskid/" + str(i) + ".html?ref=addtabs"
+        get_content(url, headers, cookies, i)
+
+def main():
+    get_more_pages(1,53)
 
 if __name__ == '__main__':
    main()
