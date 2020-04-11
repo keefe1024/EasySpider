@@ -24,7 +24,6 @@ def get_phone(url,headers,cookies):
     # 获取解析结果
     tree = etree.HTML(response)
     phone_list = tree.xpath('.//p[@class="layuiadmin-big-font card-phone"]//@id')
-    print(phone_list)
     write_txt(phone_list)
 
 def get_more_pages(start,end):
